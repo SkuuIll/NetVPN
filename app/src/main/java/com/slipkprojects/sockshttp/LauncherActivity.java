@@ -1,15 +1,14 @@
 package com.slipkprojects.sockshttp;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.slipkprojects.sockshttp.R;
-import com.slipkprojects.sockshttp.activities.BaseActivity;
 
 /**
  * @author anuragdhunna
  */
-public class LauncherActivity extends BaseActivity
+public class LauncherActivity extends AppCompatActivity
 {
 
     @Override

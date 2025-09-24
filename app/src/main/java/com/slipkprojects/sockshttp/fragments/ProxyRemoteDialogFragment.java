@@ -1,12 +1,12 @@
 package com.slipkprojects.sockshttp.fragments;
 
-import android.support.v4.app.DialogFragment;
+import androidx.fragment.app.DialogFragment;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import com.slipkprojects.sockshttp.R;
 import android.view.View;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.content.DialogInterface;
 import android.widget.EditText;
 import com.slipkprojects.sockshttp.SocksHttpMainActivity;
@@ -16,9 +16,9 @@ import android.widget.Toast;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.slipkprojects.ultrasshservice.config.Settings;
-import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.widget.AppCompatCheckBox;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import android.content.SharedPreferences;
 
 public class ProxyRemoteDialogFragment extends DialogFragment
@@ -131,36 +131,25 @@ public class ProxyRemoteDialogFragment extends DialogFragment
 	@Override
 	public void onClick(View view)
 	{
-		switch (view.getId()) {
-			case R.id.fragment_proxy_remoteSaveButton:
-				String proxy_ip = proxyRemotoIpEdit.getEditableText().toString();
-				String proxy_porta = proxyRemotoPortaEdit.getEditableText().toString();
-				
-				if (proxy_porta == null || proxy_porta.isEmpty() || proxy_porta.equals("0") ||
+		int id = view.getId();
+		if (id == R.id.fragment_proxy_remoteSaveButton) {
+			String proxy_ip = proxyRemotoIpEdit.getEditableText().toString();
+			String proxy_porta = proxyRemotoPortaEdit.getEditableText().toString();
+			if (proxy_porta == null || proxy_porta.isEmpty() || proxy_porta.equals("0") ||
 					proxy_ip == null || proxy_ip.isEmpty()) {
-					Toast.makeText(getContext(), "Proxy inválido", Toast.LENGTH_SHORT)
+				Toast.makeText(getContext(), "Proxy inválido", Toast.LENGTH_SHORT)
 						.show();
-				}
-				
-				else {
-					SharedPreferences.Editor edit = mConfig.getPrefsPrivate().edit();
-					
-					edit.putBoolean(Settings.PROXY_USAR_AUTENTICACAO_KEY, usarProxyAutenticacao);
-
-					edit.putString(Settings.PROXY_IP_KEY, proxy_ip);
-					edit.putString(Settings.PROXY_PORTA_KEY, proxy_porta);
-
-					edit.apply();
-					
-					SocksHttpMainActivity.updateMainViews(getContext());
-
-					dismiss();
-				}
-			break;
-
-			case R.id.fragment_proxy_remoteCancelButton:
+			} else {
+				SharedPreferences.Editor edit = mConfig.getPrefsPrivate().edit();
+				edit.putBoolean(Settings.PROXY_USAR_AUTENTICACAO_KEY, usarProxyAutenticacao);
+				edit.putString(Settings.PROXY_IP_KEY, proxy_ip);
+				edit.putString(Settings.PROXY_PORTA_KEY, proxy_porta);
+				edit.apply();
+				SocksHttpMainActivity.updateMainViews(getContext());
 				dismiss();
-			break;
+			}
+		} else if (id == R.id.fragment_proxy_remoteCancelButton) {
+			dismiss();
 		}
 	}
 

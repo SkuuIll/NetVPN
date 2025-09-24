@@ -7,12 +7,16 @@ import com.trilead.ssh2.crypto.cipher.BlockCipherFactory;
 import com.trilead.ssh2.crypto.cipher.CBCMode;
 import com.trilead.ssh2.crypto.cipher.DES;
 import com.trilead.ssh2.packets.TypesReader;
-import org.mindrot.jbcrypt.BCrypt;
+
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.PBEKeySpec;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
 import java.security.KeyPair;
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 
 /**
  * An decoder that can read keys written in the 'new' OpenSSH format, generally identified with the header
@@ -75,7 +79,12 @@ abstract class OpenSshCertificateDecoder extends CertificateDecoder {
             byte[] salt = kdfReader.readByteString();
             int rounds = kdfReader.readUINT32();
             SshCipher sshCipher = SshCipher.getInstance(cipher);
-            privateKeys = decryptData(privateKeys, generateKayAndIvPbkdf2(password.getBytes(StandardCharsets.UTF_8), salt, rounds, sshCipher.getKeyLength(), sshCipher.getBlockSize()), sshCipher);
+            try {
+                byte[] keyAndIv = generateKayAndIvPbkdf2(password.getBytes(StandardCharsets.UTF_8), salt, rounds, sshCipher.getKeyLength(), sshCipher.getBlockSize());
+                privateKeys = decryptData(privateKeys, keyAndIv, sshCipher);
+            } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
+                throw new IOException("Error generating key from password", e);
+            }
         } else if (!"none".equals(cipher) || !"none".equals(kdf)) {
             throw new IOException("Unexpected encryption method for key");
         }
@@ -130,10 +139,10 @@ abstract class OpenSshCertificateDecoder extends CertificateDecoder {
 
     }
 
-    private static byte[] generateKayAndIvPbkdf2(byte[] password, byte[] salt, int rounds, int keyLength, int ivLength) {
-        byte[] keyAndIV = new byte[keyLength + ivLength];
-        new BCrypt().pbkdf(password, salt, rounds, keyAndIV);
-        return keyAndIV;
+    private static byte[] generateKayAndIvPbkdf2(byte[] password, byte[] salt, int rounds, int keyLength, int ivLength) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
+        PBEKeySpec spec = new PBEKeySpec(new String(password, StandardCharsets.UTF_8).toCharArray(), salt, rounds, (keyLength + ivLength) * 8);
+        return skf.generateSecret(spec).getEncoded();
     }
 
     private enum SshCipher {

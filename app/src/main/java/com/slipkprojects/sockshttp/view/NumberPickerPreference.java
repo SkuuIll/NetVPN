@@ -8,11 +8,12 @@ import android.view.ViewGroup;
 import android.view.Gravity;
 import android.view.View;
 import android.content.res.TypedArray;
-import android.support.v7.preference.DialogPreference;
-import android.support.v7.preference.PreferenceViewHolder;
-import android.support.v7.preference.PreferenceDialogFragmentCompat;
+import androidx.preference.DialogPreference;
+import androidx.preference.PreferenceViewHolder;
+import androidx.preference.PreferenceDialogFragmentCompat;
 
-public class NumberPickerPreference extends PreferenceDialogFragmentCompat {
+// TODO: Fix NumberPickerPreference
+/*public class NumberPickerPreference extends PreferenceDialogFragmentCompat {
 
     // allowed range
     public static final int MAX_VALUE = 100;
@@ -26,10 +27,16 @@ public class NumberPickerPreference extends PreferenceDialogFragmentCompat {
 	@Override
 	public void onDialogClosed(boolean p1)
 	{
-		// TODO: Implement this method
+		if (p1) {
+            picker.clearFocus();
+            int newValue = picker.getValue();
+            if (callChangeListener(newValue)) {
+                setValue(newValue);
+            }
+        }
 	}
 
-   /* public NumberPickerPreference(Context context, AttributeSet attrs) {
+    public NumberPickerPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -62,17 +69,6 @@ public class NumberPickerPreference extends PreferenceDialogFragmentCompat {
     }
 
     @Override
-    public void onDialogClosed(boolean positiveResult) {
-        if (positiveResult) {
-            picker.clearFocus();
-            int newValue = picker.getValue();
-            if (callChangeListener(newValue)) {
-                setValue(newValue);
-            }
-        }
-    }
-
-    @Override
     protected Object onGetDefaultValue(TypedArray a, int index) {
         return a.getInt(index, MIN_VALUE);
     }
@@ -89,5 +85,5 @@ public class NumberPickerPreference extends PreferenceDialogFragmentCompat {
 
     public int getValue() {
         return this.value;
-    }*/
-}
+    }
+}*/

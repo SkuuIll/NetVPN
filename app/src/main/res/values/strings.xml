@@ -146,4 +146,6 @@
 	<string name="title_tethering_subnet">Tethering Subnet (beta)</string>
 	<string name="summary_tethering_subnet">Habilite se estiver tendo problemas para compartilhar a internet do seu dispositivo.</string>
 	
+    <string name="error_save_settings">Não foi possível salvar configuração</string>
+    <string name="log_settings_valid">Arquivo válido até: %1$s</string>
 </resources>

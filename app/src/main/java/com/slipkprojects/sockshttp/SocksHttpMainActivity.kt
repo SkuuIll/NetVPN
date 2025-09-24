@@ -1,5 +1,6 @@
 package com.slipkprojects.sockshttp
 
+import android.content.Context
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +11,13 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 
 class SocksHttpMainActivity : ComponentActivity() {
+
+    companion object {
+        @JvmStatic
+        fun updateMainViews(context: Context?) {
+            // TODO: implement UI refresh if needed for Java callers
+        }
+    }
 
     private val viewModel: MainViewModel by viewModels()
 

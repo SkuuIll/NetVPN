@@ -6,21 +6,21 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import com.slipkprojects.sockshttp.R;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.Toast;
 import android.util.Log;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import android.net.Uri;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -33,15 +33,15 @@ import com.slipkprojects.ultrasshservice.util.FileUtils;
 import com.slipkprojects.sockshttp.SocksHttpMainActivity;
 import com.slipkprojects.ultrasshservice.config.ConfigParser;
 import java.io.FileInputStream;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import java.text.DateFormat;
 import com.slipkprojects.sockshttp.LauncherActivity;
 import com.slipkprojects.sockshttp.preference.SettingsSSHPreference;
 import com.slipkprojects.ultrasshservice.config.Settings;
 import java.util.Map;
-import android.support.v4.util.ArrayMap;
+import androidx.collection.ArrayMap;
 
-public class ConfigImportFileActivity extends BaseActivity implements ManagerFilesAdapter.OnItemClickListener {
+public class ConfigImportFileActivity extends AppCompatActivity implements ManagerFilesAdapter.OnItemClickListener {
 	private static final String TAG = ConfigImportFileActivity.class.getSimpleName();
 	
 	private static final String RESTORE_CURRENT_PATH = "restoreCurrentPath";
@@ -418,7 +418,7 @@ public class ConfigImportFileActivity extends BaseActivity implements ManagerFil
 				public void onClick(DialogInterface p1, int p2) {}
 			});
 
-		dialog.show();
+			dialog.show();
 	}
 
 }

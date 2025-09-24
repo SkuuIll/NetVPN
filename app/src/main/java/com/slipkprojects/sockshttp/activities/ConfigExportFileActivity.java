@@ -1,9 +1,8 @@
 package com.slipkprojects.sockshttp.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import com.slipkprojects.sockshttp.R;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.EditText;
@@ -26,14 +25,15 @@ import java.util.Date;
 import com.slipkprojects.ultrasshservice.util.FileUtils;
 import com.slipkprojects.ultrasshservice.config.Settings;
 import com.slipkprojects.ultrasshservice.config.ConfigParser;
-import android.support.v7.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatCheckBox;
 import java.io.FileOutputStream;
 import android.widget.CheckBox;
-import android.support.design.widget.TextInputLayout;
+import com.google.android.material.textfield.TextInputLayout;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ConfigExportFileActivity
-	extends BaseActivity
-		implements CompoundButton.OnCheckedChangeListener, View.OnClickListener
+extends AppCompatActivity
+implements CompoundButton.OnCheckedChangeListener, View.OnClickListener
 {
 	private static final String TAG = ConfigExportFileActivity.class.getSimpleName();
 	
@@ -275,68 +275,53 @@ public class ConfigExportFileActivity
 	@Override
 	public void onCheckedChanged(CompoundButton p1, boolean is)
 	{
-		switch (p1.getId()) {
-			case R.id.activity_config_exportValidadeCheck:
-				if (is) {
-					setValidadeDate();
+		int id = p1.getId();
+		if (id == R.id.activity_config_exportValidadeCheck) {
+			if (is) {
+				setValidadeDate();
+			} else {
+				mValidade = 0;
+				if (validadeText != null) {
+					validadeText.setVisibility(View.INVISIBLE);
+					validadeText.setText("");
 				}
-				else {
-					mValidade = 0;
-					if (validadeText != null) {
-						validadeText.setVisibility(View.INVISIBLE);
-						validadeText.setText("");
-					}
-				}
-			break;
-			
-			case R.id.activity_config_exportProtegerCheck:
-				mIsProteger = is;
-				showSegurancaLayout(is);
-			break;
-			
-			case R.id.activity_config_exportShowLoginScreenCheck:
-				mPedirSenha = is;
-			break;
-			
-			case R.id.activity_config_exportBlockRootCheck:
-				mBloquearRoot = is;
-			break;
+			}
+		} else if (id == R.id.activity_config_exportProtegerCheck) {
+			mIsProteger = is;
+			showSegurancaLayout(is);
+		} else if (id == R.id.activity_config_exportShowLoginScreenCheck) {
+			mPedirSenha = is;
+		} else if (id == R.id.activity_config_exportBlockRootCheck) {
+			mBloquearRoot = is;
 		}
 	}
 	
 	
 	@Override
 	public void onClick(View p1) {
-		switch (p1.getId()) {
-			case R.id.activity_config_exportButton:
-				String nomeConfig = nomeEdit.getText().toString();
-				mMensagem = mIsProteger ? mensagemEdit.getText().toString() : "";
-				
-				if (nomeConfig.isEmpty()) {
-					Toast.makeText(ConfigExportFileActivity.this, R.string.error_empty_name_file, Toast.LENGTH_SHORT)
+		int id = p1.getId();
+		if (id == R.id.activity_config_exportButton) {
+			String nomeConfig = nomeEdit.getText().toString();
+			mMensagem = mIsProteger ? mensagemEdit.getText().toString() : "";
+			if (nomeConfig.isEmpty()) {
+				Toast.makeText(ConfigExportFileActivity.this, R.string.error_empty_name_file, Toast.LENGTH_SHORT)
 						.show();
-					return;
-				}
-
-				if (mIsProteger == false || mValidade < 0) {
-					mValidade = 0;
-				}
-
-				try {
-					exportConfiguracao(nomeConfig);
-
-					Toast.makeText(ConfigExportFileActivity.this, R.string.success_export_settings, Toast.LENGTH_SHORT)
+				return;
+			}
+			if (mIsProteger == false || mValidade < 0) {
+				mValidade = 0;
+			}
+			try {
+				exportConfiguracao(nomeConfig);
+				Toast.makeText(ConfigExportFileActivity.this, R.string.success_export_settings, Toast.LENGTH_SHORT)
 						.show();
-				} catch(IOException e) {
-					Toast.makeText(ConfigExportFileActivity.this, R.string.error_export_settings, Toast.LENGTH_SHORT)
+			} catch (IOException e) {
+				Toast.makeText(ConfigExportFileActivity.this, R.string.error_export_settings, Toast.LENGTH_SHORT)
 						.show();
-
-					Toast.makeText(ConfigExportFileActivity.this, e.getMessage(), Toast.LENGTH_SHORT)
+				Toast.makeText(ConfigExportFileActivity.this, e.getMessage(), Toast.LENGTH_SHORT)
 						.show();
-				}
-
-				onBackPressed();
-			break;
+			}
+			onBackPressed();
 		}
 	}
 	

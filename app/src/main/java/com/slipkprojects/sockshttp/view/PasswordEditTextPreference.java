@@ -2,8 +2,8 @@ package com.slipkprojects.sockshttp.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.support.v7.preference.EditTextPreference;
-import android.support.v7.preference.R;
+import androidx.preference.EditTextPreference;
+import androidx.preference.R;
 
 public class PasswordEditTextPreference extends EditTextPreference {
     private CharSequence mDefaultSummary = getSummary();

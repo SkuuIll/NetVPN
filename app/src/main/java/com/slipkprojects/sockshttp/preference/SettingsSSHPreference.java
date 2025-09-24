@@ -1,18 +1,18 @@
 package com.slipkprojects.sockshttp.preference;
 
-import android.support.v7.preference.PreferenceFragmentCompat;
+import androidx.preference.PreferenceFragmentCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.support.v7.preference.Preference;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.preference.EditTextPreference;
+import androidx.preference.Preference;
+import androidx.fragment.app.DialogFragment;
+import androidx.preference.EditTextPreference;
 import android.widget.Toast;
 import android.view.View.OnClickListener;
 import android.content.SharedPreferences;
-import android.support.v7.preference.PreferenceManager;
-import android.support.v7.preference.CheckBoxPreference;
+import androidx.preference.PreferenceManager;
+import androidx.preference.CheckBoxPreference;
 import android.content.Intent;
 import com.slipkprojects.sockshttp.SocksHttpApp;
 import com.slipkprojects.sockshttp.R;

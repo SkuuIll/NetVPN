@@ -1,13 +1,13 @@
 package com.slipkprojects.sockshttp;
 
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.RecyclerView;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 import java.util.ArrayList;
 import com.slipkprojects.sockshttp.R;
 import android.content.pm.PackageInfo;
 import com.slipkprojects.sockshttp.util.Utils;
-import android.support.v7.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import android.os.Build;
 import android.view.View;
 import android.app.Activity;

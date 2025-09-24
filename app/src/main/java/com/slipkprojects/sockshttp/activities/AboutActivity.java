@@ -1,24 +1,22 @@
 package com.slipkprojects.sockshttp.activities;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import com.slipkprojects.sockshttp.R;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.widget.TextView;
-import com.slipkprojects.sockshttp.util.Utils;
+import android.os.Bundle;
 import android.text.Html;
-import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import com.google.android.gms.ads.AdView;
-import com.slipkprojects.ultrasshservice.tunnel.TunnelUtils;
+import android.widget.TextView;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.slipkprojects.sockshttp.R;
 import com.slipkprojects.sockshttp.SocksHttpApp;
-import com.slipkprojects.sockshttp.BuildConfig;
+import com.slipkprojects.sockshttp.util.Utils;
+import com.slipkprojects.ultrasshservice.tunnel.TunnelUtils;
 
 public class AboutActivity extends BaseActivity
 {
@@ -38,7 +36,7 @@ public class AboutActivity extends BaseActivity
 		try {
 			PackageInfo pm = getPackageManager().getPackageInfo(getPackageName(), 0);
 			String version = String.format("%s (Build %d)", pm.versionName, pm.versionCode);
-		
+			
 			TextView versionName = (TextView) findViewById(R.id.versionName);
 			versionName.setText(version);
 		} catch (PackageManager.NameNotFoundException e) {}
@@ -46,6 +44,7 @@ public class AboutActivity extends BaseActivity
 		Button showLicense = (Button) findViewById(R.id.activity_aboutShowLicenseButton);
 		showLicense.setOnClickListener(new View.OnClickListener() {
 			@Override
+
 			public void onClick(View v) {
 				showLicenses();
 			}
@@ -54,9 +53,6 @@ public class AboutActivity extends BaseActivity
 		showAgradecimentos();
 		
 		adsBannerView = (AdView) findViewById(R.id.adBannerSecondView);
-		if (!BuildConfig.DEBUG) {
-			//adsBannerView.setAdUnitId(SocksHttpApp.ADS_UNITID_BANNER_SOBRE);
-		}
 		
 		// carrega anúncio
 		if (TunnelUtils.isNetworkOnline(this)) {
@@ -148,4 +144,3 @@ public class AboutActivity extends BaseActivity
 	}
 	
 }
-

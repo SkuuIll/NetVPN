@@ -1,8 +1,7 @@
 package com.slipkprojects.sockshttp.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 import android.content.SharedPreferences;
 import android.widget.EditText;
 import android.widget.Button;
@@ -27,18 +26,19 @@ import android.widget.AdapterView.OnItemClickListener;
 import java.util.List;
 import java.util.HashMap;
 import android.widget.SimpleAdapter;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
 import com.slipkprojects.sockshttp.preference.SettingsPreference;
 import com.slipkprojects.ultrasshservice.util.SkProtect;
-import android.support.v7.preference.PreferenceScreen;
-import android.support.v7.preference.PreferenceFragmentCompat;
-import android.support.v7.preference.Preference;
-import android.support.v4.app.Fragment;
+import androidx.preference.PreferenceScreen;
+import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.Preference;
+import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import com.slipkprojects.sockshttp.preference.SettingsSSHPreference;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class ConfigGeralActivity extends BaseActivity
+public class ConfigGeralActivity extends AppCompatActivity
 	implements PreferenceFragmentCompat.OnPreferenceStartFragmentCallback
 {
 	public static String OPEN_SETTINGS_SSH = "openSSHScreen";
@@ -96,4 +96,3 @@ public class ConfigGeralActivity extends BaseActivity
 		return true;
 	}
 }
-

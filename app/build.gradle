@@ -33,7 +33,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion '1.5.8'
     }
-    namespace 'com.netvpn'
+    namespace 'com.slipkprojects.sockshttp'
 }
 
 dependencies {

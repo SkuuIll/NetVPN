@@ -9,7 +9,7 @@ import android.os.Environment;
 import android.content.Intent;
 import android.os.Handler;
 import android.app.PendingIntent;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.core.app.NotificationManagerCompat;
 import com.slipkprojects.ultrasshservice.util.FileUtils;

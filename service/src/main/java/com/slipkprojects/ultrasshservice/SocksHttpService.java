@@ -11,7 +11,7 @@ import com.slipkprojects.ultrasshservice.logger.SkStatus;
 import android.os.Binder;
 import android.os.Handler;
 import android.content.IntentFilter;
-import android.support.v4.content.LocalBroadcastManager;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import java.util.List;
 import com.slipkprojects.ultrasshservice.aidl.IUltraSSHServiceInternal;
 import android.os.RemoteException;

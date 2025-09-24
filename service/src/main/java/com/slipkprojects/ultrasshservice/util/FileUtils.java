@@ -1,6 +1,6 @@
 package com.slipkprojects.ultrasshservice.util;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.content.pm.PackageManager;
 import androidx.core.app.ActivityCompat;
 import android.app.Activity;

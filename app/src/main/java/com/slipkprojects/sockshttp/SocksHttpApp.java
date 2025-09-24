@@ -1,7 +1,7 @@
 package com.slipkprojects.sockshttp;
 
 import android.app.Application;
-import android.support.v7.app.AppCompatDelegate;
+import androidx.appcompat.app.AppCompatDelegate;
 import com.slipkprojects.sockshttp.preference.SettingsPreference;
 import com.slipkprojects.ultrasshservice.util.SkProtect;
 import com.slipkprojects.ultrasshservice.logger.SkStatus;
