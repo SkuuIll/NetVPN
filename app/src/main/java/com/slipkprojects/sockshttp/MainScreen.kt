@@ -6,16 +6,27 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
 
 @Composable
 fun MainScreen(
     status: String,
-    onConnectClick: () -> Unit
+    onConnectClick: () -> Unit,
+    onSettingsClick: () -> Unit
 ) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = "NetVPN") }
+                title = { Text(text = "NetVPN") },
+                actions = {
+                    IconButton(onClick = onSettingsClick) {
+                        Icon(imageVector = Icons.Filled.Settings, contentDescription = "Ajustes")
+                    }
+                    TextButton(onClick = onSettingsClick) {
+                        Text("Ajustes")
+                    }
+                }
             )
         }
     ) {
@@ -24,10 +35,15 @@ fun MainScreen(
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = status, style = MaterialTheme.typography.h5)
+            val statusEs = when (status) {
+                "Connected" -> "Conectado"
+                "Disconnected" -> "Desconectado"
+                else -> status
+            }
+            Text(text = statusEs, style = MaterialTheme.typography.h5)
             Spacer(modifier = Modifier.height(16.dp))
             Button(onClick = onConnectClick) {
-                Text(text = "Connect")
+                Text(text = "Conectar")
             }
         }
     }

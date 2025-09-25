@@ -1,0 +1,33 @@
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.preference.PreferenceCategory
+        android:title="@string/category_payload_proxy" />
+
+    <androidx.preference.ListPreference
+        android:key="tunnelType"
+        android:title="@string/title_tunnel_type"
+        android:summary="@string/summary_tunnel_type"
+        app:useSimpleSummaryProvider="true"
+        android:entries="@array/tunnel_type_labels"
+        android:entryValues="@array/tunnel_type_values" />
+
+    <androidx.preference.CheckBoxPreference
+        android:key="usarDefaultPayload"
+        android:title="@string/title_use_default_payload"
+        android:summary="@string/summary_use_default_payload"
+        android:defaultValue="true" />
+
+    <androidx.preference.EditTextPreference
+        android:key="proxyPayload"
+        android:title="@string/title_custom_payload"
+        app:useSimpleSummaryProvider="true"
+        android:dialogMessage="@string/dialog_custom_payload"
+        android:defaultValue="@string/default_payload" />
+
+    <androidx.preference.Preference
+        android:key="openProxyConfig"
+        android:title="@string/title_open_proxy_config"
+        android:summary="@string/summary_open_proxy_config" />
+
+</androidx.preference.PreferenceScreen>

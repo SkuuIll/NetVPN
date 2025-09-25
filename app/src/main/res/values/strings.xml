@@ -48,6 +48,17 @@
 	<string name="category_user_interface">Interface do Usuário</string>
 	<string name="title_language">Idioma</string>
 	<string name="category_tunnel">Túnnel</string>
+	<string name="category_payload_proxy">Payload y Proxy</string>
+	<string name="title_payload_settings">Configuración de Payload y Proxy</string>
+	<string name="title_tunnel_type">Tipo de Túnel</string>
+	<string name="summary_tunnel_type">Selecciona cómo se conectará (directo con payload o vía proxy HTTP)</string>
+	<string name="title_use_default_payload">Usar payload por defecto</string>
+	<string name="summary_use_default_payload">Desactiva para escribir tu propio payload personalizado</string>
+	<string name="title_custom_payload">Payload personalizado</string>
+	<string name="dialog_custom_payload">Edita tu payload. Soporta [method] [host] [host_port] [port] [protocol] [crlf] [ua] [split] [delay_split] [rotate=*] [random=*]</string>
+	<string name="default_payload">CONNECT [host_port] [protocol][crlf][crlf]</string>
+	<string name="title_open_proxy_config">Configurar Proxy Remoto</string>
+	<string name="summary_open_proxy_config">Define IP, puerto y autenticación del proxy</string>
 	
 	<!-- novo -->
 	

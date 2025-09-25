@@ -42,6 +42,18 @@
 		<item>15th</item>
         <item>25th</item>
     </array>
-	
-	
+    
+    <!-- Tunnel type for payload/proxy -->
+    <array name="tunnel_type_labels">
+        <item>SSH Direct (Payload)</item>
+        <item>SSH via HTTP Proxy</item>
+    </array>
+
+    <!-- Values map to SettingsConstants.bTUNNEL_TYPE_* ints as strings -->
+    <array name="tunnel_type_values">
+        <item>1</item>
+        <item>2</item>
+    </array>
+    
+    
 </resources>

@@ -1,6 +1,6 @@
 package com.slipkprojects.sockshttp
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,6 +9,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import com.slipkprojects.sockshttp.activities.ConfigGeralActivity
 
 class SocksHttpMainActivity : ComponentActivity() {
 
@@ -28,7 +29,10 @@ class SocksHttpMainActivity : ComponentActivity() {
                 val status by viewModel.status.collectAsState()
                 MainScreen(
                     status = status,
-                    onConnectClick = { viewModel.onConnectClick() }
+                    onConnectClick = { viewModel.onConnectClick() },
+                    onSettingsClick = {
+                        startActivity(Intent(this, ConfigGeralActivity::class.java))
+                    }
                 )
             }
         }
